@@ -1,0 +1,54 @@
+#include <stdio.h>
+#include <string.h>
+
+// Note: conio.h and clrscr() are removed for compatibility with modern compilers
+#define pf printf
+#define sf scanf
+
+// Fixed: Added array brackets [] and corrected variable types
+char dc[] = "XDGSZANYOBTMJCEVFHKWPLQURI";
+char ee[] = "abcdefghijklmnopqrstuvwxyz";
+
+void e(char*);
+void d(char*);
+
+int main() {
+    char p[100]; // Fixed: Allocated 100 characters of memory
+
+    pf("\nEnter plain text (lowercase only): ");
+    sf("%s", p);
+
+    pf("\nAfter Encryption:\n--------------------\n");
+    e(p);
+    pf("%s\n", p);
+
+    pf("\nAfter Decryption:\n--------------------\n");
+    d(p);
+    pf("%s\n", p);
+
+    return 0;
+}
+
+void e(char *p) {
+    int l = 0;
+    while (p[l] != '\0') {
+        // Only encrypts lowercase letters (ASCII 97-122)
+        if (p[l] >= 97 && p[l] <= 122) {
+            p[l] = dc[p[l] - 97];
+        }
+        l++;
+    }
+}
+
+void d(char *p) {
+    int l = 0;
+    while (p[l] != '\0') {
+        int i;
+        for (i = 0; i < 26; i++) {
+            if (dc[i] == p[l])
+                break;
+        }
+        p[l] = ee[i];
+        l++;
+    }
+}
