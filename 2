@@ -1,0 +1,19 @@
+#include <stdio.h>
+#include <string.h>
+
+int main() 
+{
+    char pasword[10], usrname[10];
+
+    printf("Enter User name: ");
+    fgets(usrname, sizeof(usrname), stdin);
+    usrname[strcspn(usrname, "\n")] = 0; 
+
+    printf("Enter the password (up to 8 chars): ");
+    // %9s ensures we don't overflow the 10-character array
+    scanf("%9s", pasword); 
+
+    printf("\nYour password is: %s\n", pasword);
+
+    return 0;
+}
